@@ -90,7 +90,6 @@ class _InitialScreenState extends State<InitialScreen> {
                                   ),
                                 ),
                                 onTap: () async {
-
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => Contas()));
                                 },
                               ),
