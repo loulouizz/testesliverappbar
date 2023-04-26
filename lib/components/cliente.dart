@@ -1,82 +1,137 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:testes_mysql1/screens/detalhes_do_cliente_screen.dart';
 
 class Cliente extends StatefulWidget {
-  late final String nome;
-  late final String telefone;
-  late final String fantasia;
+  String _nome;
+  String _telefone;
+  String _fantasia;
+  String _id;
+  String _status;
 
-  Cliente(this.nome, this.fantasia, this.telefone, {Key? key})
+  Cliente(this._nome, this._fantasia, this._telefone, this._id, this._status, {Key? key})
       : super(key: key);
 
   @override
   State<Cliente> createState() => _ClienteState();
+
+  String get nome => _nome;
+  set nome(String value) {
+    _nome = value;
+  }
+
+  String get telefone => _telefone;
+  set telefone(String value) {
+    _telefone = value;
+  }
+
+  String get fantasia => _fantasia;
+  set fantasia(String value) {
+    _fantasia = value;
+  }
+
+  String get id => _id;
+  set id(String value) {
+    _id = value;
+  }
+
+  String get status => _status;
+  set status(String value) {
+    _status = value;
+  }
 }
 
 class _ClienteState extends State<Cliente> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(2.0),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12), color: Colors.white70),
-        height: 80,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    widget.fantasia,
-                    style: GoogleFonts.quicksand(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        width: 250,
-                        height: 20,
-                        child: Text(
-                          widget.nome,
-                          style: GoogleFonts.quicksand(fontSize: 12, color: Colors.black), overflow: TextOverflow.fade,
+      padding: EdgeInsets.only(right: 2.0,left: 2.0,top: 0.0,bottom: 4.0),
+      child: Ink(
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.white70), width: MediaQuery.of(context).size.width, height: 82,
+        child: Container(
+          child: Material(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.white70,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(12),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DetalhesDoClienteScreen(widget.fantasia, widget.nome, widget.id, widget.status)));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12), color: Colors.white70),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
 
-
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            child: Text(
+                              widget.fantasia,
+                              overflow: TextOverflow.ellipsis,
+                              style: GoogleFonts.quicksand(fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
+                          ),
                         ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SafeArea(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center ,
+                              children: [
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width * 0.6,
+                                  height: 20,
+                                  child: Text(
+                                    widget.nome,
+                                    style: GoogleFonts.quicksand(fontSize: 12, color: Colors.black), overflow: TextOverflow.ellipsis,
+
+
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  widget.telefone,
+                                  style: GoogleFonts.quicksand(fontSize: 12)
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(12),
+                              bottomRight: Radius.circular(12)),
+                          color: widget.status == '1' ? Colors.blue[800] : Colors.red[800]
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        widget.telefone,
-                        style: GoogleFonts.quicksand(fontSize: 12)
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                      width: 16,
+                      height: 82,
+                    )
+                   ],
+                ),
+              ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(12),
-                      bottomRight: Radius.circular(12)),
-                  color: Colors.deepOrange),
-              width: 12,
-              height: 80,
-            )
-          ],
+          ),
         ),
       ),
     );

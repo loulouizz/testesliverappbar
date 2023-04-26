@@ -8,11 +8,11 @@ class ClienteInherited extends InheritedWidget {
   }) : super(key: key, child: child);
 
   final List<Cliente> clientelist = [
-    Cliente('nome', 'fantasia', 'telefone')
+    Cliente('nome', 'fantasia', 'telefone', 'id', 'status')
   ];
 
-  void newCliente(int id, String nome, String fantasia, String telefone){
-    clientelist.add(Cliente(nome,fantasia,telefone));
+  void newCliente(String id, String nome, String fantasia, String telefone, String status){
+    clientelist.add(Cliente(nome,fantasia,telefone,id,status));
   }
 
   static ClienteInherited of(BuildContext context) {

@@ -2,9 +2,9 @@
     package="com.example.testes_mysql1">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="testes_mysql1"
+        android:label="JV App"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
