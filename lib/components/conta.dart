@@ -2,8 +2,10 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:testes_mysql1/screens/informacoes_conta.dart';
 
 class Conta extends StatefulWidget {
+  String _id;
   String _favorecido;
   DateTime _dtVenc;
   DateTime? _dtPag;
@@ -12,7 +14,7 @@ class Conta extends StatefulWidget {
   String _formaPagamento;
   String _bx;
 
-  Conta(this._favorecido, this._dtVenc, this._dtPag, this._valor,
+  Conta(this._id, this._favorecido, this._dtVenc, this._dtPag, this._valor,
       this._valorPago, this._formaPagamento, this._bx,
       {Key? key})
       : super(key: key);
@@ -22,6 +24,12 @@ class Conta extends StatefulWidget {
   @override
   State<Conta> createState() => _ContaState();
 
+
+  String get id => _id;
+
+  set id(String value) {
+    _id = value;
+  }
 
   String get favorecido => _favorecido;
 
@@ -77,7 +85,12 @@ class _ContaState extends State<Conta> {
         color: Colors.white70,
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => InformacoesConta(widget.id)));
+          },
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Row(
@@ -107,7 +120,7 @@ class _ContaState extends State<Conta> {
                             Flexible(
                               flex: 1,
                               child: Text(
-                                "R\$${widget.valor}",
+                                "R\$ ${widget.valor}".replaceAll(".", ","),
                                 style: GoogleFonts.quicksand(
                                     fontSize: 20, color: Colors.black),
                               ),
@@ -133,28 +146,30 @@ class _ContaState extends State<Conta> {
                                 ),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                widget.bx == "S"
-                                    ? Text(
-                                        "Data Pagamento: ${widget.dtPag.toString().substring(8,10)}/${widget.dtPag.toString().substring(5,7)}/${widget.dtPag.toString().substring(0,4)}",
-                                        style: GoogleFonts.quicksand(
-                                            fontSize: 14,
-                                            color: Colors.black54),
-                                      )
-                                    : SizedBox(),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      0.06,
-                                ),
-                                widget.bx == "S"
-                                    ? Text(
-                                        "Valor pago: R\$${widget.valorPago}")
-                                    : const SizedBox(),
-                              ],
+                            SafeArea(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  widget.bx == "S"
+                                      ? Text(
+                                          "Data Pagamento: ${widget.dtPag.toString().substring(8,10)}/${widget.dtPag.toString().substring(5,7)}/${widget.dtPag.toString().substring(0,4)}",
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 14,
+                                              color: Colors.black54),
+                                        )
+                                      : SizedBox(),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.06,
+                                  ),
+                                  widget.bx == "S"
+                                      ? Text(
+                                          "R\$${widget.valorPago}", style: TextStyle(fontSize: 16, color: Colors.blue),)
+                                      : const SizedBox(),
+                                ],
+                              ),
                             )
                           ],
                         ),

@@ -3,7 +3,6 @@ import 'package:testes_mysql1/Data/cliente_dao.dart';
 import 'package:testes_mysql1/Data/conta_dao.dart';
 import 'package:testes_mysql1/Data/conta_inherited.dart';
 import 'package:testes_mysql1/global_var.dart';
-import 'package:testes_mysql1/route_generator.dart';
 import 'package:testes_mysql1/screens/initial_screen.dart';
 import 'package:testes_mysql1/screens/login_screen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -29,25 +28,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ContaInherited(
-      child: MaterialApp(
-        builder: (context, widget) => ResponsiveWrapper.builder(
-          ClampingScrollWrapper.builder(context, widget!),
-          breakpoints: const [
-            ResponsiveBreakpoint.resize(350, name: MOBILE),
-            ResponsiveBreakpoint.autoScale(600, name: TABLET),
-            ResponsiveBreakpoint.resize(800, name: DESKTOP),
-            ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
-          ],
-        ),
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        //home: ClienteInherited(child: const ListScreen(),)
-        onGenerateRoute: RouteGenerator.generateRoute,
-        home: InitialScreen(),
+    return MaterialApp(
+      builder: (context, widget) => ResponsiveWrapper.builder(
+        ClampingScrollWrapper.builder(context, widget!),
+        breakpoints: const [
+          ResponsiveBreakpoint.resize(350, name: MOBILE),
+          ResponsiveBreakpoint.autoScale(600, name: TABLET),
+          ResponsiveBreakpoint.resize(800, name: DESKTOP),
+          ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
+        ],
       ),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      //home: ClienteInherited(child: const ListScreen(),)
+      home: InitialScreen(),
     );
   }
 }

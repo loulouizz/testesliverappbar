@@ -97,8 +97,8 @@ class _ContasState extends State<Contas> with TickerProviderStateMixin {
             body: TabBarView(
               controller: _tabController,
               children: [
-                Expanded(child: buildarListaContas(ContaDao().findAll("N"))),
-                Expanded(child: buildarListaContas(ContaDao().findAll("S"))),
+                buildarListaContas(ContaDao().findAll("N")),
+                buildarListaContas(ContaDao().findAll("S")),
               ],
             ),
           ),

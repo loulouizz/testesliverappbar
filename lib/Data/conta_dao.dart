@@ -8,13 +8,14 @@ class ContaDao{
 
     var conn = await conectar();
 
-    var resultado = await conn.query('SELECT f.for_fantasia, p.vencto, p.data_pagto, p.valor, p.valor_pago, p.codforma, p.bx FROM pagar p LEFT JOIN forneced f ON p.codfor = f.for_codigo WHERE p.bx LIKE "%$isBx" LIMIT 500');
+    var resultado = await conn.query('SELECT p.numero, f.for_fantasia, p.vencto, p.data_pagto, p.valor, p.valor_pago, p.codforma, p.bx FROM pagar p LEFT JOIN forneced f ON p.codfor = f.for_codigo WHERE p.bx LIKE "%$isBx" LIMIT 500');
 
     desconectarDB(conn);
 
     List<Conta> resultadoFinal = [];
 
     //COLOCAR AQUI OS ATRIBUTOS NECESSARIOS DAS CONTAS PARA SEREM MOSTRADOS NA TELA DE LISTA
+    String numero;
     String favorecido;
     DateTime dtVenc;
     DateTime? dtPag;
@@ -25,15 +26,16 @@ class ContaDao{
 
     for (int i = 0; i < resultado.length; i++) {
       if (resultado.elementAt(i).values?[0] != null) {
-        favorecido = resultado.elementAt(i).values![0].toString();
-        dtVenc = DateTime.parse(resultado.elementAt(i).values![1].toString());
-        dtPag = DateTime.tryParse(resultado.elementAt(i).values![2].toString());
-        valor = double.parse(resultado.elementAt(i).values![3].toString());
-        valorPago = double.parse(resultado.elementAt(i).values![4].toString());
-        formaPagamento = resultado.elementAt(i).values![5].toString();
-        bx = resultado.elementAt(i).values![6].toString();
+        numero = resultado.elementAt(i).values![0].toString();
+        favorecido = resultado.elementAt(i).values![1].toString();
+        dtVenc = DateTime.parse(resultado.elementAt(i).values![2].toString());
+        dtPag = DateTime.tryParse(resultado.elementAt(i).values![3].toString());
+        valor = double.parse(resultado.elementAt(i).values![4].toString());
+        valorPago = double.parse(resultado.elementAt(i).values![5].toString());
+        formaPagamento = resultado.elementAt(i).values![6].toString();
+        bx = resultado.elementAt(i).values![7].toString();
 
-        Conta conta1 = Conta(favorecido,dtVenc,dtPag,valor,valorPago,formaPagamento,bx);
+        Conta conta1 = Conta(numero,favorecido,dtVenc,dtPag,valor,valorPago,formaPagamento,bx);
         resultadoFinal.add(conta1);
       }
     }
@@ -43,18 +45,18 @@ class ContaDao{
     return resultadoFinal;
   }
 
-
   Future<List<Conta>> findPesquisaDB (String nomepesquisa, String isBx) async {
 
     var conn = await conectar();
 
-    var resultado = await conn.query('SELECT f.for_fantasia, p.vencto, p.data_pagto, p.valor, p.valor_pago, p.codforma, p.bx FROM pagar p LEFT JOIN forneced f ON p.codfor = f.for_codigo WHERE p.bx LIKE "%$isBx" ORDER BY f.for_fantasia ASC');
+    var resultado = await conn.query('SELECT p.numero, f.for_fantasia, p.vencto, p.data_pagto, p.valor, p.valor_pago, p.codforma, p.bx FROM pagar p LEFT JOIN forneced f ON p.codfor = f.for_codigo WHERE p.bx LIKE "%$isBx" ORDER BY f.for_fantasia ASC');
 
     desconectarDB(conn);
 
     List<Conta> resultadoFinal = [];
 
     //COLOCAR AQUI OS ATRIBUTOS NECESSARIOS DAS CONTAS PARA SEREM MOSTRADOS NA TELA DE LISTA
+    String numero;
     String favorecido;
     DateTime dtVenc;
     DateTime? dtPag;
@@ -65,15 +67,16 @@ class ContaDao{
 
     for (int i = 0; i < resultado.length; i++) {
       if (resultado.elementAt(i).values?[0] != null) {
-        favorecido = resultado.elementAt(i).values![0].toString();
-        dtVenc = DateTime.parse(resultado.elementAt(i).values![1].toString());
-        dtPag = DateTime.tryParse(resultado.elementAt(i).values![2].toString());
-        valor = double.parse(resultado.elementAt(i).values![3].toString());
-        valorPago = double.parse(resultado.elementAt(i).values![4].toString());
-        formaPagamento = resultado.elementAt(i).values![5].toString();
-        bx = resultado.elementAt(i).values![6].toString();
+        numero = resultado.elementAt(i).values![0].toString();
+        favorecido = resultado.elementAt(i).values![1].toString();
+        dtVenc = DateTime.parse(resultado.elementAt(i).values![2].toString());
+        dtPag = DateTime.tryParse(resultado.elementAt(i).values![3].toString());
+        valor = double.parse(resultado.elementAt(i).values![4].toString());
+        valorPago = double.parse(resultado.elementAt(i).values![5].toString());
+        formaPagamento = resultado.elementAt(i).values![6].toString();
+        bx = resultado.elementAt(i).values![7].toString();
 
-        Conta conta1 = Conta(favorecido,dtVenc,dtPag,valor,valorPago,formaPagamento,bx);
+        Conta conta1 = Conta(numero,favorecido,dtVenc,dtPag,valor,valorPago,formaPagamento,bx);
         resultadoFinal.add(conta1);
       }
     }
@@ -86,13 +89,14 @@ class ContaDao{
 
 
 
-    var resultado = await conn.query('SELECT f.for_fantasia, p.vencto, p.data_pagto, p.valor, p.valor_pago, p.codforma, p.bx FROM pagar p LEFT JOIN forneced f ON p.codfor = f.for_codigo WHERE p.bx = "$isBx" AND f.for_fantasia LIKE "%$nomepesquisa%" AND p.vencto BETWEEN "$dataInicio" AND "$dataFinal" ORDER BY p.vencto, f.for_fantasia;');
+    var resultado = await conn.query('SELECT p.numero, f.for_fantasia, p.vencto, p.data_pagto, p.valor, p.valor_pago, p.codforma, p.bx FROM pagar p LEFT JOIN forneced f ON p.codfor = f.for_codigo WHERE p.bx = "$isBx" AND f.for_fantasia LIKE "%$nomepesquisa%" AND p.vencto BETWEEN "$dataInicio" AND "$dataFinal" ORDER BY p.vencto, f.for_fantasia;');
 
     desconectarDB(conn);
 
     List<Conta> resultadoFinal = [];
 
     //COLOCAR AQUI OS ATRIBUTOS NECESSARIOS DAS CONTAS PARA SEREM MOSTRADOS NA TELA DE LISTA
+    String numero;
     String favorecido;
     DateTime dtVenc;
     DateTime? dtPag;
@@ -103,18 +107,49 @@ class ContaDao{
 
     for (int i = 0; i < resultado.length; i++) {
       if (resultado.elementAt(i).values?[0] != null) {
-        favorecido = resultado.elementAt(i).values![0].toString();
-        dtVenc = DateTime.parse(resultado.elementAt(i).values![1].toString());
-        dtPag = DateTime.tryParse(resultado.elementAt(i).values![2].toString());
-        valor = double.parse(resultado.elementAt(i).values![3].toString());
-        valorPago = double.parse(resultado.elementAt(i).values![4].toString());
-        formaPagamento = resultado.elementAt(i).values![5].toString();
-        bx = resultado.elementAt(i).values![6].toString();
+        numero = resultado.elementAt(i).values![0].toString();
+        favorecido = resultado.elementAt(i).values![1].toString();
+        dtVenc = DateTime.parse(resultado.elementAt(i).values![2].toString());
+        dtPag = DateTime.tryParse(resultado.elementAt(i).values![3].toString());
+        valor = double.parse(resultado.elementAt(i).values![4].toString());
+        valorPago = double.parse(resultado.elementAt(i).values![5].toString());
+        formaPagamento = resultado.elementAt(i).values![6].toString();
+        bx = resultado.elementAt(i).values![7].toString();
 
-        Conta conta1 = Conta(favorecido,dtVenc,dtPag,valor,valorPago,formaPagamento,bx);
+        Conta conta1 = Conta(numero,favorecido,dtVenc,dtPag,valor,valorPago,formaPagamento,bx);
         resultadoFinal.add(conta1);
       }
     }
+    return resultadoFinal;
+  }
+
+  Future<List<String>> findInfoConta (String id) async{
+    var conn = await conectar();
+    // numero, data, vencimento, data pagamento, valor, tipo, sub-tipo, descrição, parcela, fornecedor
+    var resultado = await conn.query('SELECT p.numero, p.data, p.vencto, p.data_pagto, p.valor, p.codtipo, p.codsubtipo, f.for_fantasia, p.descricao, p.parcela, p.id_doc FROM pagar p LEFT JOIN forneced f ON p.codfor = f.for_codigo WHERE p.numero = ' + id);
+
+    desconectarDB(conn);
+
+    List<String> resultadoFinal = [];
+
+    for (int i = 0; i < resultado.length; i++){
+      if (resultado.elementAt(i).values?[0] != null) {
+        resultadoFinal.add(resultado.elementAt(i).values![0].toString());
+        resultadoFinal.add(resultado.elementAt(i).values![1].toString());
+        resultadoFinal.add(resultado.elementAt(i).values![2].toString());
+        resultadoFinal.add(resultado.elementAt(i).values![3].toString());
+        resultadoFinal.add(resultado.elementAt(i).values![4].toString());
+        resultadoFinal.add(resultado.elementAt(i).values![5].toString());
+        resultadoFinal.add(resultado.elementAt(i).values![6].toString());
+        resultadoFinal.add(resultado.elementAt(i).values![7].toString());
+        resultadoFinal.add(resultado.elementAt(i).values![8].toString());
+        resultadoFinal.add(resultado.elementAt(i).values![9].toString());
+        resultadoFinal.add(resultado.elementAt(i).values![10].toString());
+      }
+    }
+
+    print(resultadoFinal.toString());
+
     return resultadoFinal;
   }
 }

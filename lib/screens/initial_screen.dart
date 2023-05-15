@@ -18,6 +18,7 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      bottom: false,
       child: Scaffold(
         appBar: AppBar(title: Text("JV App")),
         body: Padding(
@@ -90,7 +91,7 @@ class _InitialScreenState extends State<InitialScreen> {
                                   ),
                                 ),
                                 onTap: () async {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Contas()));
+                                  //Navigator.push(context, MaterialPageRoute(builder: (context) => Contas()));
                                 },
                               ),
                             ),
@@ -103,48 +104,46 @@ class _InitialScreenState extends State<InitialScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 100,
-                        height: 120,
-                        color: Colors.red,
-                      ),
-                      Ink(
-                        width: 100,
-                        height: 120,
-                        child: Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Material(
-                                color: Colors.yellow,
-                                child: InkWell(
-                                  child: Container(
-                                    width: 100,
-                                    height: 120,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.receipt_long, color: Colors.white, size: 72),
-                                        Text("A pagar", style: GoogleFonts.roboto(fontSize: 20, color: Colors.white)),
-                                      ],
-                                    ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 120,
+                      color: Colors.red,
+                    ),
+                    Ink(
+                      width: 100,
+                      height: 120,
+                      child: Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Material(
+                              color: Colors.yellow,
+                              child: InkWell(
+                                child: Container(
+                                  width: 100,
+                                  height: 120,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.receipt_long, color: Colors.white, size: 72),
+                                      Text("A pagar", style: GoogleFonts.roboto(fontSize: 20, color: Colors.white)),
+                                    ],
                                   ),
-                                  onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => ListScreen()));
-                                  },
                                 ),
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Contas()));
+                                },
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],
