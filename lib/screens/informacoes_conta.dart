@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:testes_mysql1/Data/conta_dao.dart';
+import 'package:testes_mysql1/screens/conta_editar_screen.dart';
 
 class InformacoesConta extends StatefulWidget {
   final String id;
   late String data;
   late String vencimento;
   late String dataPag;
-  late int valor;
+  late String valor;
   late String tipo;
   late String subtipo;
   late String fornecedor;
@@ -83,6 +84,16 @@ class _InformacoesContaState extends State<InformacoesConta> {
               case ConnectionState.done:
                 if (snapshot.hasData && items != null) {
                   if (items.isNotEmpty) {
+                    widget.data = items[1];
+                    widget.vencimento = items[2];
+                    widget.dataPag = items[3];
+                    widget.valor = items[4];
+                    widget.tipo = items[5];
+                    widget.subtipo = items[6];
+                    widget.fornecedor = items[7];
+                    widget.descricao = items[8];
+                    widget.parcela = items[9];
+                    widget.id_doc = items[10];
                     return Column(
                       children: [
                         Padding(
@@ -178,7 +189,7 @@ class _InformacoesContaState extends State<InformacoesConta> {
                                                               fontWeight: FontWeight.w600,
                                                               fontSize: 16,
                                                               color: Colors.black38)),
-                                                      Text(items[3] == "null" ? "Sem data de pagamento" : "${items[3].toString().substring(8,10)}/${items[2].toString().substring(5,7)}/${items[2].toString().substring(0,4)}", style: GoogleFonts.quicksand(fontWeight: FontWeight.w600, fontSize: 16, color: Colors.black87)),
+                                                      Text(items[3] == "null" ? "Sem data de pagamento" : "${items[3].toString().substring(8,10)}/${items[3].toString().substring(5,7)}/${items[3].toString().substring(0,4)}", style: GoogleFonts.quicksand(fontWeight: FontWeight.w600, fontSize: 16, color: Colors.black87)),
                                                     ],
                                                   ),
                                                 ),
@@ -350,7 +361,10 @@ class _InformacoesContaState extends State<InformacoesConta> {
         bottomNavigationBar: ButtonBar(
           alignment: MainAxisAlignment.end,
           children: [
-            ElevatedButton(onPressed: (){}, child: Text("Alterar")),
+            ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ContaEditarScreen(id: widget.id,
+              data: widget.data, dataPag: widget.dataPag, descricao: widget.descricao, fornecedor: widget.fornecedor, parcela: widget.parcela, id_doc: widget.id_doc, subtipo: widget.subtipo,
+            tipo: widget.tipo, valor: widget.valor, vencimento: widget.vencimento,)));},
+                child: Text("Alterar")),
             ElevatedButton(onPressed: (){}, child: Text("Baixar")),
             ElevatedButton(onPressed: (){}, child: Text("Excluir")),
           ],

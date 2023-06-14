@@ -53,8 +53,8 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(top: 120),
-                  child:
-                      Icon(Icons.account_box, size: 220.0, color: Colors.black87),
+                  child: Icon(Icons.account_box,
+                      size: 220.0, color: Colors.black87),
                 ),
                 SizedBox(
                   height: 30,
@@ -73,9 +73,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: TextFormField(
                             controller: userController,
                             decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'Usuário',
-                                icon: Icon(Icons.person, color: Colors.black54),),
+                              border: InputBorder.none,
+                              hintText: 'Usuário',
+                              icon: Icon(Icons.person, color: Colors.black54),
+                            ),
                           ),
                         ),
                       ),
@@ -145,8 +146,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 alignment: Alignment.center,
                                 backgroundColor: Colors.white,
                                 title: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 70),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 70),
                                   child: Text('Login inválido'),
                                 ),
                                 content: SingleChildScrollView(
@@ -183,7 +184,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.blue),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
                               side: BorderSide(color: Colors.blue)),
@@ -208,5 +210,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
-

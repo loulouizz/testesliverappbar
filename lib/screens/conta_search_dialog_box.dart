@@ -122,7 +122,9 @@ class _ContaSearchDialogBox extends State<ContaSearchDialogBox> {
                 children: <Widget>[
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      //adicionar retorno isSearch false
+                      Navigator.of(context).pop([false]);
+
                     },
                     child: Text("Cancelar"),
                   ),
@@ -140,7 +142,7 @@ class _ContaSearchDialogBox extends State<ContaSearchDialogBox> {
                       print("Start Date: $startDate");
                       print("End Date: $endDate");
 
-                      widget.bx == "N" ? contasAPagar = await ContaDao().pesquisarNomeData(name, widget.bx, startDate, endDate) : contasPagas = await ContaDao().pesquisarNomeData(name, widget.bx, startDate, endDate);
+                      //widget.bx == "N" ? contasAPagar = await ContaDao().pesquisarNomeData(name, widget.bx, startDate, endDate) : contasPagas = await ContaDao().pesquisarNomeData(name, widget.bx, startDate, endDate);
 
 
                       Navigator.of(context).pop([true, name, startDate, endDate]);

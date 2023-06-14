@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_launcher_icons/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,10 +8,24 @@ import 'package:testes_mysql1/Data/conta_dao.dart';
 import 'package:testes_mysql1/Data/conta_inherited.dart';
 import 'package:testes_mysql1/components/conta.dart';
 import 'package:testes_mysql1/global_var.dart';
+import 'package:testes_mysql1/screens/conta_search_dialog_box.dart';
 import 'package:testes_mysql1/screens/conta_search_screen.dart';
 
 class Contas extends StatefulWidget {
-  const Contas({Key? key}) : super(key: key);
+  late List<Conta> contasLista;
+
+  String nomePesquisa = "";
+  String dataInicio = "2020-01-01";
+  String dataFinal  = "2023-01-01";
+  bool isSearch = false;
+
+  List<Conta> contasPagasRaiz = [];
+  List<Conta> contasAPagarRaiz = [];
+
+  late Future<List<Conta>> contasPagas;
+  late Future<List<Conta>> contasAPagar;
+
+  Contas({Key? key}) : super(key: key);
 
   @override
   State<Contas> createState() => _ContasState();
@@ -22,10 +38,18 @@ class _ContasState extends State<Contas> with TickerProviderStateMixin {
   late TabController _tabController;
   int _bx = 1;
 
+  void carregarDados() async {
+    widget.contasPagas      = ContaDao().findAll("S");
+    widget.contasAPagar     = ContaDao().findAll("N");
+    widget.contasPagasRaiz  = await ContaDao().findAll("S");
+    widget.contasAPagarRaiz = await ContaDao().findAll("N");
+  }
+
   @override
-  void initState() {
+  void initState()  {
+    carregarDados();
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController          = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -36,6 +60,9 @@ class _ContasState extends State<Contas> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return SafeArea(
         child: Scaffold(
           backgroundColor: Colors.grey[300],
@@ -55,10 +82,30 @@ class _ContasState extends State<Contas> with TickerProviderStateMixin {
                   actions: [
                     IconButton(
                       onPressed: () async {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ContaSearchScreen(_tabController.index == 0 ? "N" : "S")));
+                        List<dynamic> result = await showDialog(
+                            context: context,
+                            builder: (BuildContext context){
+                              return ContaSearchDialogBox(_tabController.index == 0 ? "N" : "S");
+                            });
+
+                        if (!mounted) return;
+
+                        if(result[0] == true){
+                          //ScaffoldMessenger.of(context)..removeCurrentSnackBar()..showSnackBar(SnackBar(content: Text("${result[1]}")));
+
+                          // fazer um if. Se o result[0] for true, então fazer o setstate abaixo, senão, fazer um setstate atualizando a lista para a original
+                          setState(() {
+                            widget.isSearch = result[0];
+                            widget.nomePesquisa = result[1];
+                            widget.dataInicio = result[2];
+                            widget.dataFinal = result[3];
+                          });
+
+                          _tabController.index == 0 ? widget.contasAPagar = ContaDao().pesquisarNomeData(result[1], "N", result[2], result[3]) : widget.contasPagas = ContaDao().pesquisarNomeData(result[1], "S", result[2], result[3]);
+
+                        }
+
+
                       },
                       icon: Icon(Icons.search_sharp),
                     ),
@@ -97,8 +144,8 @@ class _ContasState extends State<Contas> with TickerProviderStateMixin {
             body: TabBarView(
               controller: _tabController,
               children: [
-                buildarListaContas(ContaDao().findAll("N")),
-                buildarListaContas(ContaDao().findAll("S")),
+                buildarListaContas(widget.contasAPagar),
+                buildarListaContas(widget.contasPagas),
               ],
             ),
           ),
