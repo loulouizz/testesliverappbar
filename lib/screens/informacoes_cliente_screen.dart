@@ -70,11 +70,11 @@ class _InformacoesClienteState extends State<InformacoesCliente> {
                             height: 6,
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP) ? 8.0 : 100.0, right: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP) ? 8.0 : 200.0),
+                            padding: EdgeInsets.only(left: ResponsiveBreakpoints.of(context).smallerThan(TABLET) ? 8.0 : 100.0, right: ResponsiveBreakpoints.of(context).smallerThan(TABLET) ? 8.0 : 100.0),
                             child: ResponsiveRowColumn(
                               rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
                               columnCrossAxisAlignment: CrossAxisAlignment.start,
-                              layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP) ? ResponsiveRowColumnType.COLUMN : ResponsiveRowColumnType.ROW,
+                              layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? ResponsiveRowColumnType.COLUMN : ResponsiveRowColumnType.ROW,
                               children: [
                                 ResponsiveRowColumnItem(
                                   child: Column(
@@ -91,9 +91,6 @@ class _InformacoesClienteState extends State<InformacoesCliente> {
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 16,
                                                     color: Colors.black38)),
-                                            /*Text("Nome fantasia teste",
-                                      style: GoogleFonts.quicksand(
-                                          fontWeight: FontWeight.w600, fontSize: 16, color: Colors.black87)),*/
                                             Text(widget.nome_fantasia, style: GoogleFonts.quicksand(fontWeight: FontWeight.w600, fontSize: 16, color: Colors.black87)),
                                           ],
                                         ),
@@ -112,9 +109,6 @@ class _InformacoesClienteState extends State<InformacoesCliente> {
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 16,
                                                     color: Colors.black38)),
-                                            /*Text("Razão social teste",
-                                      style: GoogleFonts.quicksand(
-                                          fontWeight: FontWeight.w600, fontSize: 16, color: Colors.black87)),*/
                                             Text(widget.razao_social, style: GoogleFonts.quicksand(fontWeight: FontWeight.w600, fontSize: 16, color: Colors.black87)),
                                           ],
                                         ),

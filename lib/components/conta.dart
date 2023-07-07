@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:testes_mysql1/screens/informacoes_conta.dart';
@@ -89,7 +87,7 @@ class _ContaState extends State<Conta> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => InformacoesConta(widget.id)));
+                    builder: (context) => InformacoesConta(id: widget.id, bx: widget.bx,)));
           },
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -166,7 +164,7 @@ class _ContaState extends State<Conta> {
                                   ),
                                   widget.bx == "S"
                                       ? Text(
-                                          "R\$${widget.valorPago}", style: TextStyle(fontSize: 16, color: Colors.blue),)
+                                          "R\$${widget.valorPago.toString().replaceAll('.', ',')}", style: TextStyle(fontSize: 16, color: Colors.blue),)
                                       : const SizedBox(),
                                 ],
                               ),

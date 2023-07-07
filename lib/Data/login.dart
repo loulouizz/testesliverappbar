@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:mysql1/mysql1.dart';
 import 'package:testes_mysql1/Data/database.dart';
 

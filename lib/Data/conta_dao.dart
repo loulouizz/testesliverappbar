@@ -152,4 +152,33 @@ class ContaDao{
 
     return resultadoFinal;
   }
+
+  Future<String> update ({required String data, required String vencto, required String data_pgto, required String codtipo, required String codsubtipo, required String valor, required String descricao, required String parcela, required String id_doc, required String id}) async {
+    var conn = await conectar();
+    // numero, data, vencimento, data pagamento, valor, tipo, sub-tipo, descrição, parcela, fornecedor
+    var resultado = await conn.query('UPDATE pagar SET data = "${data}", vencto = "${vencto}", data_pagto = "${data_pgto}", valor = "${valor}", codtipo = "${codtipo}", codsubtipo = "${codsubtipo}", descricao = "${descricao}", parcela = "${parcela}", id_doc = "${id_doc}" WHERE numero = "${id}";');
+
+    print(resultado.toString());
+    desconectarDB(conn);
+    return "";
+  }
+
+  Future<String> baixar ({required String data_pgto, required String valor_pago, required String bx, required String id}) async {
+    var conn = await conectar();
+    // numero, data, vencimento, data pagamento, valor, tipo, sub-tipo, descrição, parcela, fornecedor
+    var resultado = await conn.query('UPDATE pagar SET data_pagto = "${data_pgto}", valor_pago = ${valor_pago}, bx = "${bx}" WHERE numero = ${id};');
+
+    print(resultado.toString());
+    desconectarDB(conn);
+    return "";
+  }
+
+  Future<String> delete ({required int id}) async {
+    var conn = await conectar();
+
+    var resultado = await conn.query('DELETE FROM pagar WHERE numero = $id');
+    desconectarDB(conn);
+
+    return "";
+  }
 }
