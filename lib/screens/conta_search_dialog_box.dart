@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:testes_mysql1/Data/conta_dao.dart';
-import 'package:testes_mysql1/global_var.dart';
-import 'package:testes_mysql1/screens/conta_search_screen.dart';
 
 class ContaSearchDialogBox extends StatefulWidget {
   String bx;

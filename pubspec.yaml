@@ -46,6 +46,10 @@ dependencies:
   validatorless: ^1.2.3
   intl: ^0.18.1
   google_fonts: ^4.0.4
+  needle_orm_mariadb: ^0.1.1
+  mysql_client: ^0.0.27
+  flutter_barcode_scanner: ^2.0.0
+  barcode: ^2.2.4
 
 flutter_icons:
   android: "launcher_icon"

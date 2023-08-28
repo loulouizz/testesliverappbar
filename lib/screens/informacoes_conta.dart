@@ -22,14 +22,14 @@ class InformacoesConta extends StatefulWidget {
   late String parcela;
   late String id_doc;
 
-  InformacoesConta({required this.id, required this.bx, Key? key}) : super(key: key);
+  InformacoesConta({required this.id, required this.bx, Key? key})
+      : super(key: key);
 
   @override
   State<InformacoesConta> createState() => _InformacoesContaState();
 }
 
 class _InformacoesContaState extends State<InformacoesConta> {
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -75,7 +75,10 @@ class _InformacoesContaState extends State<InformacoesConta> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [CircularProgressIndicator(), Text('Waiting')],
+                        children: [
+                          CircularProgressIndicator(),
+                          Text('Waiting')
+                        ],
                       ),
                     );
                     break;
@@ -125,71 +128,61 @@ class _InformacoesContaState extends State<InformacoesConta> {
                                         ),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              left: 8.0,
-                                              right: 8.0),
+                                              left: 8.0, right: 8.0),
                                           child: Column(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(
-                                                height: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 40 : 50,
+                                                height: ResponsiveBreakpoints
+                                                            .of(context)
+                                                        .smallerThan(DESKTOP)
+                                                    ? 68
+                                                    : 73,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text("Número",
-                                                        style: GoogleFonts
-                                                            .quicksand(
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
-                                                            color: Colors
-                                                                .black38)),
-                                                    Text(items[0],
-                                                        style: GoogleFonts
-                                                            .quicksand(
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
-                                                            color: Colors
-                                                                .black87)),
-                                                  ],
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 6,
-                                              ),
-                                              SizedBox(
-                                                height: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 40 : 50,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
-                                                  children: [
-                                                    Text("Data",
-                                                        style: GoogleFonts
-                                                            .quicksand(
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
-                                                            color: Colors
-                                                                .black38)),
-                                                    Text(
-                                                        "${items[1].toString().substring(8, 10)}/${items[1].toString().substring(5, 7)}/${items[1].toString().substring(0, 4)}",
                                                         style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
-                                                                .black87)),
+                                                                .black38)),
+                                                    TextField(
+                                                      enabled: false,
+                                                      obscureText: true,
+                                                      cursorColor: Colors.black,
+                                                      decoration: InputDecoration(
+                                                          hoverColor: Colors
+                                                              .black,
+                                                          focusColor: Colors
+                                                              .black,
+                                                          contentPadding:
+                                                              EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          0,
+                                                                      horizontal:
+                                                                          10),
+                                                          focusedBorder: OutlineInputBorder(
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                      color:
+                                                                          Colors
+                                                                              .black,
+                                                                      width:
+                                                                          2.0)),
+                                                          border:
+                                                              OutlineInputBorder(),
+                                                          labelText: widget.id),
+                                                    ),
                                                   ],
                                                 ),
                                               ),
@@ -197,29 +190,140 @@ class _InformacoesContaState extends State<InformacoesConta> {
                                                 height: 6,
                                               ),
                                               SizedBox(
-                                                height: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 40 : 50,
+                                                height: ResponsiveBreakpoints
+                                                            .of(context)
+                                                        .smallerThan(DESKTOP)
+                                                    ? 68
+                                                    : 50,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text("Data",
+                                                        style: GoogleFonts.quicksand(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
+                                                            color: Colors
+                                                                .black38)),
+                                                    Row(
+                                                      children: [
+                                                        Expanded(
+                                                          child: TextField(
+                                                            decoration:
+                                                                InputDecoration(
+                                                              hoverColor:
+                                                                  Colors.black,
+                                                              focusColor:
+                                                                  Colors.black,
+                                                              contentPadding:
+                                                                  EdgeInsets.symmetric(
+                                                                      vertical:
+                                                                          0,
+                                                                      horizontal:
+                                                                          10),
+                                                              focusedBorder: OutlineInputBorder(
+                                                                  borderSide: const BorderSide(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      width:
+                                                                          2.0)),
+                                                              border:
+                                                                  OutlineInputBorder(),
+                                                              labelText:
+                                                                  "${items[1].toString().substring(8, 10)}/${items[1].toString().substring(5, 7)}/${items[1].toString().substring(0, 4)}",
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        TextButton(
+                                                            onPressed:
+                                                                () async {
+                                                              final DateTime?
+                                                                  pickedDate =
+                                                                  await showDatePicker(
+                                                                context:
+                                                                    context,
+                                                                initialDate: DateTime.utc(
+                                                                    int.parse(widget
+                                                                        .data
+                                                                        .toString()
+                                                                        .substring(
+                                                                            0,
+                                                                            4)),
+                                                                    int.parse(widget
+                                                                        .data
+                                                                        .toString()
+                                                                        .substring(
+                                                                            5,
+                                                                            7)),
+                                                                    int.parse(widget
+                                                                        .data
+                                                                        .toString()
+                                                                        .substring(
+                                                                            8,
+                                                                            10))),
+                                                                firstDate:
+                                                                    DateTime(
+                                                                        2000),
+                                                                lastDate:
+                                                                    DateTime
+                                                                        .now(),
+                                                              );
+
+                                                              setState(() {
+                                                                widget.data =
+                                                                    pickedDate
+                                                                        .toString();
+                                                              });
+                                                            },
+                                                            child:
+                                                                Text('Alterar'))
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 6,
+                                              ),
+                                              SizedBox(
+                                                height: ResponsiveBreakpoints
+                                                            .of(context)
+                                                        .smallerThan(DESKTOP)
+                                                    ? 40
+                                                    : 50,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text("Vencimento",
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black38)),
                                                     Text(
                                                         "${items[2].toString().substring(8, 10)}/${items[2].toString().substring(5, 7)}/${items[2].toString().substring(0, 4)}",
                                                         style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black87)),
                                                   ],
@@ -229,32 +333,40 @@ class _InformacoesContaState extends State<InformacoesConta> {
                                                 height: 6,
                                               ),
                                               SizedBox(
-                                                height: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 40 : 50,
+                                                height: ResponsiveBreakpoints
+                                                            .of(context)
+                                                        .smallerThan(DESKTOP)
+                                                    ? 40
+                                                    : 50,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                        "Data de pagamento",
+                                                    Text("Data de pagamento",
                                                         style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black38)),
                                                     Text(
                                                         items[3] == "null"
                                                             ? "Sem data de pagamento"
                                                             : "${items[3].toString().substring(8, 10)}/${items[3].toString().substring(5, 7)}/${items[3].toString().substring(0, 4)}",
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black87)),
                                                   ],
@@ -265,36 +377,50 @@ class _InformacoesContaState extends State<InformacoesConta> {
                                               ),
                                               Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 textDirection:
-                                                TextDirection.ltr,
+                                                    TextDirection.ltr,
                                                 children: [
                                                   SizedBox(
-                                                    height: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 50 : 81,
+                                                    height:
+                                                        ResponsiveBreakpoints
+                                                                    .of(context)
+                                                                .smallerThan(
+                                                                    DESKTOP)
+                                                            ? 50
+                                                            : 81,
                                                     width: 100,
                                                     child: Column(
                                                       crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .start,
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
                                                         Text("Valor",
                                                             style: GoogleFonts.quicksand(
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .w600,
-                                                                fontSize:
-                                                                ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: ResponsiveBreakpoints.of(
+                                                                            context)
+                                                                        .smallerThan(
+                                                                            DESKTOP)
+                                                                    ? 16
+                                                                    : 20,
                                                                 color: Colors
                                                                     .black38)),
                                                         Text(
                                                             "R\$ ${items[4].replaceAll(".", ",")}",
                                                             style: GoogleFonts.quicksand(
                                                                 fontWeight:
-                                                                FontWeight
-                                                                    .w600,
-                                                                fontSize:
-                                                                ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: ResponsiveBreakpoints.of(
+                                                                            context)
+                                                                        .smallerThan(
+                                                                            DESKTOP)
+                                                                    ? 16
+                                                                    : 20,
                                                                 color: Colors
                                                                     .black87)),
                                                         SizedBox(
@@ -306,30 +432,37 @@ class _InformacoesContaState extends State<InformacoesConta> {
                                                 ],
                                               ),
                                               SizedBox(
-                                                height: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 50 : 60,
+                                                height: ResponsiveBreakpoints
+                                                            .of(context)
+                                                        .smallerThan(DESKTOP)
+                                                    ? 50
+                                                    : 60,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text("Tipo",
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black38)),
                                                     Text(items[5],
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black87)),
                                                     SizedBox(
@@ -339,30 +472,37 @@ class _InformacoesContaState extends State<InformacoesConta> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                height: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 40 : 50,
+                                                height: ResponsiveBreakpoints
+                                                            .of(context)
+                                                        .smallerThan(DESKTOP)
+                                                    ? 40
+                                                    : 50,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text("Sub-tipo",
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black38)),
                                                     Text(items[6],
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black87)),
                                                   ],
@@ -372,30 +512,37 @@ class _InformacoesContaState extends State<InformacoesConta> {
                                                 height: 6,
                                               ),
                                               SizedBox(
-                                                height: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 40 : 50,
+                                                height: ResponsiveBreakpoints
+                                                            .of(context)
+                                                        .smallerThan(DESKTOP)
+                                                    ? 40
+                                                    : 50,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text("Fornecedor",
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black38)),
                                                     Text(items[7],
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black87)),
                                                   ],
@@ -405,33 +552,40 @@ class _InformacoesContaState extends State<InformacoesConta> {
                                                 height: 6,
                                               ),
                                               SizedBox(
-                                                height: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 40 : 50,
+                                                height: ResponsiveBreakpoints
+                                                            .of(context)
+                                                        .smallerThan(DESKTOP)
+                                                    ? 40
+                                                    : 50,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text("Descrição",
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black38)),
                                                     Text(
                                                         items[8].isEmpty
                                                             ? "Sem descrição"
                                                             : items[8],
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black87)),
                                                   ],
@@ -441,60 +595,74 @@ class _InformacoesContaState extends State<InformacoesConta> {
                                                 height: 6,
                                               ),
                                               SizedBox(
-                                                height: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 40 : 50,
+                                                height: ResponsiveBreakpoints
+                                                            .of(context)
+                                                        .smallerThan(DESKTOP)
+                                                    ? 40
+                                                    : 50,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text("Parcela",
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black38)),
                                                     Text(items[9],
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black87)),
                                                   ],
                                                 ),
                                               ),
                                               SizedBox(
-                                                height: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 40 : 50,
+                                                height: ResponsiveBreakpoints
+                                                            .of(context)
+                                                        .smallerThan(DESKTOP)
+                                                    ? 40
+                                                    : 50,
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text("ID do documento",
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black38)),
                                                     Text(items[10],
-                                                        style: GoogleFonts
-                                                            .quicksand(
+                                                        style: GoogleFonts.quicksand(
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            fontSize:
-                                                            ResponsiveBreakpoints.of(context).smallerThan(DESKTOP) ? 16 : 20,
+                                                                FontWeight.w600,
+                                                            fontSize: ResponsiveBreakpoints.of(
+                                                                        context)
+                                                                    .smallerThan(
+                                                                        DESKTOP)
+                                                                ? 16
+                                                                : 20,
                                                             color: Colors
                                                                 .black87)),
                                                   ],
@@ -549,15 +717,17 @@ class _InformacoesContaState extends State<InformacoesConta> {
                                 )));
                   },
                   child: Text("Alterar")),
-              widget.bx == 'N' ? ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return ContaBaixarDialogBox(id: widget.id);
-                        });
-                  },
-                  child: Text("Baixar")) : SizedBox(),
+              widget.bx == 'N'
+                  ? ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return ContaBaixarDialogBox(id: widget.id);
+                            });
+                      },
+                      child: Text("Baixar"))
+                  : SizedBox(),
               ElevatedButton(
                   onPressed: () => showDialog(
                       context: context,
