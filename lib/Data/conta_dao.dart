@@ -12,9 +12,10 @@ class ContaDao{
 
     desconectarDB(conn);
 
+
     List<Conta> resultadoFinal = [];
 
-    //COLOCAR AQUI OS ATRIBUTOS NECESSARIOS DAS CONTAS PARA SEREM MOSTRADOS NA TELA DE LISTA
+
     String numero;
     String favorecido;
     DateTime dtVenc;
